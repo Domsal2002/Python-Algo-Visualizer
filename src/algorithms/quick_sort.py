@@ -1,21 +1,38 @@
-# algorithms/quick_sort.py
+import simpleaudio as sa
 
-def quick_sort(data):
-    if len(data) <= 1:
-        yield data
-    else:
-        pivot = data[len(data) // 2]
-        less = []
-        equal = []
-        greater = []
-        for x in data:
-            if x < pivot:
-                less.append(x)
-            elif x == pivot:
-                equal.append(x)
+swap_sound = sa.WaveObject.from_wave_file("../1417.wav")
+
+def play_sound():
+    swap_sound.play()
+
+
+
+def quick_sort(data, start=0, end=None):
+    if end is None:
+        end = len(data)
+
+    if end - start > 1:
+        pivot_index = start
+        pivot = data[pivot_index]
+        low = start + 1
+        high = end - 1
+
+        while True:
+            while low <= high and data[high] >= pivot:
+                high = high - 1
+
+            while low <= high and data[low] <= pivot:
+                low = low + 1
+
+            if low <= high:
+                data[low], data[high] = data[high], data[low]
+                play_sound()
+                yield data, [low, high]  # Yield array and swapped indices
             else:
-                greater.append(x)
-        for part in quick_sort(less):
-            yield part + equal + greater
-        for part in quick_sort(greater):
-            yield less + equal + part
+                break
+
+        data[start], data[high] = data[high], data[start]
+        yield data, [start, high]  # Yield array and swapped indices for pivot
+
+        yield from quick_sort(data, start, high)
+        yield from quick_sort(data, high + 1, end)

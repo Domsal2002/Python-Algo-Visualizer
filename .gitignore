@@ -3,3 +3,4 @@ requirements.txt
 /gui/__pycache__/
 venv/
 ```
+src/gui/__pycache__/main_window.cpython-310.pyc
