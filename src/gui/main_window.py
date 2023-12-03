@@ -1,7 +1,6 @@
 import tkinter as tk
 from tkinter import ttk, Canvas
 import random
-import threading
 
 class MainWindow(tk.Frame):
     def __init__(self, master, sorting_algorithms):
@@ -49,17 +48,12 @@ class MainWindow(tk.Frame):
         array_size_entry.pack(side=tk.LEFT, padx=5, pady=5)
 
         # Start Sorting Button
-        start_button = tk.Button(self, text="Start Sorting", command=self.start_sorting_thread)
+        start_button = tk.Button(self, text="Start Sorting", command=self.start_sorting)
         start_button.pack(side=tk.LEFT, padx=5, pady=5)
 
         # Canvas for Visualization
         self.canvas = Canvas(self, width=600, height=400)
         self.canvas.pack(fill=tk.BOTH, expand=True)
-
-    def start_sorting_thread(self):
-        """Start the sorting process in a separate thread."""
-        sorting_thread = threading.Thread(target=self.start_sorting)
-        sorting_thread.start()
 
     def start_sorting(self):
         """Sort the array and update the visualization."""
