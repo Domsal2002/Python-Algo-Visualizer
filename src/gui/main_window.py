@@ -10,7 +10,7 @@ class MainWindow(tk.Frame):
         self.master = master
         self.sorting_algorithms = sorting_algorithms
         self.selected_algorithm = tk.StringVar()
-        self.delay = tk.IntVar(value=100)
+        self.delay = tk.IntVar(value=0)
         self.array = []
         self.master.minsize(1000, 700)
         self.create_widgets()
@@ -38,11 +38,11 @@ class MainWindow(tk.Frame):
         delay_label = tk.Label(delay_frame, text="Delay (in ms): ")
         delay_label.pack(side=tk.LEFT, padx=5, pady=5)
         
-        delay_slider = tk.Scale(delay_frame, from_=0, to=100, resolution=10, orient=tk.HORIZONTAL, variable=self.delay)
+        delay_slider = tk.Scale(delay_frame, from_=0, to=100, resolution=10 , orient=tk.HORIZONTAL, variable=self.delay)
         delay_slider.pack(side=tk.LEFT, fill=tk.X, expand=True, padx=5, pady=5)
 
         # Array Size Input
-        self.array_size = tk.IntVar(value=10)
+        self.array_size = tk.IntVar(value=5)
         array_size_label = tk.Label(self, text="Array Size:")
         array_size_label.pack(side=tk.LEFT, padx=5, pady=5)
         array_size_scale = tk.Scale(self, from_=1, to=1000, variable=self.array_size, label="Array Size") #creates the sliders
