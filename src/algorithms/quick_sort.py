@@ -1,11 +1,9 @@
 import simpleaudio as sa
 
-swap_sound = sa.WaveObject.from_wave_file("../1417.wav")
+swap_sound = sa.WaveObject.from_wave_file("../1417q.wav")
 
 def play_sound():
     swap_sound.play()
-
-
 
 def quick_sort(data, start=0, end=None):
     if end is None:
